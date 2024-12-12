@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rewrite Your Content - AI SEO Tools</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* CSS cho spinner */
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Ensures minimum height is full viewport height */
+        }
+        main {
+            flex: 1; /* Makes main content expand to fill available space */
+        }
+        footer {
+            margin-top: auto; /* Pushes footer to bottom when content is short */
+        }
+        .spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+            display: none; /* Ẩn spinner ban đầu */
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Header -->
+    <header class="bg-[#9ab8d7] shadow-md py-4">
+        <nav class="container mx-auto px-6 flex justify-between items-center">
+            <div><img src="./image/Logo.png" alt="Hình ảnh logo nhóm" width="128" height="96"></div>
+            <div class="space-x-6">
+                <button class="bg-gray-100 text-gray-1000 hover:bg-[#f59f2d] transition-colors duration-300 rounded-lg py-4 px-8" onclick="window.location.href='/'">Home</button>
+                <button class="bg-gray-100 text-gray-1000 hover:bg-[#f59f2d] transition-colors duration-300 rounded-lg py-4 px-8" onclick="window.location.href='seo-score.html'">Check Your SEO Score</button>
+                <button class="bg-[#f59f2d] text-gray-1000 hover:bg-[#f59f2d] transition-colors duration-300 rounded-lg py-4 px-8" onclick="window.location.href='rewrite-seo.html'">Rewrite Your Content</button>
+                <button class="bg-gray-100 text-gray-1000 hover:bg-[#f59f2d] transition-colors duration-300 rounded-lg py-4 px-8" onclick="window.location.href='about.html'">About Us</button>
+            </div>
+        </nav>
+    </header>
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-8">
+        <h1 class="text-3xl font-bold mb-6">Rewrite Your Content</h1>
+        <form id="rewrite-form" class="bg-gray-100 !important rounded-lg shadow-md p-8">
+            <textarea id="content-input" rows="10" class="w-full border border-gray-300 rounded-lg p-4" placeholder="Paste your content here..."></textarea>
+            <button id="rewrite-button" type="submit" class="mt-4 bg-[#ffde59] py-2 px-4 rounded-lg hover:bg-[#f59f2d] transition duration-300">Rewrite Content</button>
+            <div id="loading" class="mt-2 text-blue-600 hidden">
+                <div class="spinner"></div>
+                <span>Loading...</span>
+            </div>
+        </form>
+        <div id="rewritten-content" class="hidden">
+            <h2 class="text-2xl font-semibold">Rewritten Content:</h2>
+
+            <!-- Title -->
+            <div class="p-4 bg-gray-50 rounded shadow mb-4">
+                <h3 class="text-xl font-semibold">Title</h3>
+                <p id="title" class="text-gray-700"></p>
+            </div>
+
+            <!-- Meta Description -->
+            <div class="p-4 bg-gray-50 rounded shadow mb-4">
+                <h3 class="text-xl font-semibold">Meta Description</h3>
+                <p id="meta-description" class="text-gray-700"></p>
+            </div>
+
+            <!-- Optimized Content -->
+            <div id="optimized-content" class="space-y-4 mb-6">
+                <h3 class="text-xl font-semibold">Optimized Content</h3>
+                <!-- Content will be populated dynamically -->
+            </div>
+
+            <!-- Internal Links Suggestions -->
+            <div id="internal-links" class="space-y-4 mb-6">
+                <h3 class="text-xl font-semibold">Internal Links Suggestions</h3>
+                <!-- Internal links will be populated dynamically -->
+            </div>
+
+            <!-- External Links Suggestions -->
+            <div id="external-links" class="space-y-4">
+                <h3 class="text-xl font-semibold">External Links Suggestions</h3>
+                <!-- External links will be populated dynamically -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#384959] text-white py-2">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2024 AI SEO Tools. All rights reserved.</p>
+            <div class="mt-4">
+                <a href="mailto:contact@aiseotools.com" class="text-white hover:text-yellow-500">Contact Us</a> | 
+                <a href="about.html" class="text-white hover:text-yellow-500">About Us</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const prompt = `
+            **[Role] Expert**  
+            SEO Content Optimization Specialist
+
+            **[Task] Create**  
+            SEO-optimized content based on the provided text.
+
+            **[Context] Creative**  
+            Enhance the content to meet SEO standards while ensuring it remains engaging and natural for readers.
+
+            **Sections Required:**
+            1. **Title:**  
+            - Create an engaging SEO-friendly title.  
+            - **Character limit:** Maximum of 60 characters.  
+
+            2. **Meta Description:**  
+            - Write a compelling meta description summarizing the content.  
+            - **Character limit:** Maximum of 160 characters.  
+            - Ensure it includes the primary keyword and entices searchers.
+
+            3. **Optimized Content:**  
+            - Revise the original content to enhance readability and SEO effectiveness.  
+            - Focus on sentence and paragraph length for better engagement.  
+            - Ensure the content provides real value to readers.
+
+            4. **Internal Links Suggestions:**  
+            - Propose relevant internal links that enhance user experience and SEO.  
+            - Provide at least two suggestions.
+
+            5. **External Links Suggestions:**  
+            - Suggest credible external links that can provide additional value or context.  
+            - Provide at least two suggestions.
+
+            **[Evaluation Criteria]**  
+            - **Accuracy:** Ensure all suggested keywords and links are relevant and correctly implemented.  
+            - **Clarity:** The content must be easy to understand and follow.  
+            - **Completeness:** All sections must be fully addressed and contain all necessary information.  
+            - **Practicality:** Recommendations should be actionable and applicable to real-world scenarios.  
+            - **Efficiency:** The revised content should effectively engage readers while meeting SEO standards.
+
+            **[Constraints]**  
+            - Keep the language simple and accessible to a broad audience.  
+            - Avoid technical jargon unless absolutely necessary for clarity.  
+            - Be specific and actionable in all recommendations and revisions.  
+            - Focus on the key requirements outlined for SEO optimization.
+
+                    **[OUTPUT]**  
+        Sample output With NO MARKDOWN OR CODEBLOCK:
+        {
+            "title": "How to Improve Your SEO Strategy in 2024",
+            "meta_description": "Learn how to optimize your SEO strategy for 2024 with these essential tips. Improve rankings and visibility with effective techniques.",
+            "optimized_content": [
+                {
+                "section": "Introduction",
+                "content": "SEO optimization is crucial for online success in 2024. By following key strategies, you can boost your rankings, visibility, and user engagement. Let's dive into the best practices."
+                },
+                {
+                "section": "Understanding SEO Basics",
+                "content": "Start with the fundamentals. Ensure your website is mobile-friendly, has fast loading speeds, and uses secure HTTPS connections. These basic elements contribute significantly to SEO success."
+                },
+                {
+                "section": "Keyword Research",
+                "content": "Effective keyword research helps you target the right audience. Use tools like Google Keyword Planner to find high-ranking keywords with low competition."
+                },
+                {
+                "section": "Content Optimization",
+                "content": "Create valuable, high-quality content that answers users' questions. Use relevant keywords naturally in titles, headings, and body content to improve SEO ranking."
+                },
+                {
+                "section": "Conclusion",
+                "content": "SEO is an ongoing process. Keep updating your strategies and content to stay ahead of the competition and ensure long-term success in search engine rankings."
+                }
+            ],
+            "internal_links_suggestions": [
+                {
+                "link_text": "SEO Basics",
+                "url": "/seo-basics"
+                },
+                {
+                "link_text": "Keyword Research Guide",
+                "url": "/keyword-research-guide"
+                }
+            ],
+            "external_links_suggestions": [
+                {
+                "link_text": "Google Keyword Planner",
+                "url": "https://ads.google.com/home/tools/keyword-planner/"
+                },
+                {
+                "link_text": "Moz's SEO Beginner's Guide",
+                "url": "https://moz.com/beginners-guide-to-seo"
+                }
+            ]
+            }
+            `;
+
+        document.getElementById('rewrite-form').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const content = document.getElementById('content-input').value;
+            const rewriteButton = document.getElementById('rewrite-button');
+            const loadingIndicator = document.getElementById('loading');
+
+            // Disable the button and show loading indicator
+            rewriteButton.disabled = true;
+            loadingIndicator.classList.remove('hidden');
+
+            const apiKey =  'AIzaSyCxfNZmwz4ENyo9rQK9Xc1_bAp8L32531o'; // Thay thế bng cách lấy từ biến môi trường nếu cần
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-002:generateContent?key=${apiKey}`;
+
+            const requestBody = {
+                contents: [
+                    {
+                        role: "user",
+                        parts: [
+                            {
+                                text: prompt + "This is content to rewrite:" + content
+                            }
+                        ]
+                    }
+                ],
+                generationConfig: {
+                    temperature: 0.3,
+                    topK: 40,
+                    topP: 0.95,
+                    maxOutputTokens: 8192,
+                    responseMimeType: "text/plain"
+                }
+            };
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(requestBody)
+                });
+
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+
+                console.log(response)
+                const data = await response.json();
+                console.log(data)
+                if (data.candidates && data.candidates.length > 0) {
+                    let geminiResponseText = data.candidates[0].content.parts[0]?.text || "No response text available.";
+                    geminiResponseText = geminiResponseText.replace(/^```json|```$/g, '').trim();
+
+                    // Parse data and populate the page
+                    const result = JSON.parse(geminiResponseText);
+                    document.getElementById('title').innerText = result.title;
+                    document.getElementById('meta-description').innerText = result.meta_description;
+
+                    // Populate optimized content
+                    const optimizedContentContainer = document.getElementById('optimized-content');
+                    result.optimized_content.forEach(item => {
+                        const contentCard = document.createElement('div');
+                        contentCard.classList.add('p-4', 'bg-gray-50', 'rounded', 'shadow');
+                        contentCard.innerHTML = `
+                            <h4 class="font-semibold text-lg">${item.section}</h4>
+                            <p class="text-gray-700">${item.content}</p>
+                        `;
+                        optimizedContentContainer.appendChild(contentCard);
+                    });
+
+                    // Populate internal links
+                    const internalLinksContainer = document.getElementById('internal-links');
+                    result.internal_links_suggestions.forEach(link => {
+                        const linkCard = document.createElement('div');
+                        linkCard.classList.add('p-4', 'bg-gray-50', 'rounded', 'shadow');
+                        linkCard.innerHTML = `
+                            <a href="${link.url}" class="text-blue-600 hover:text-blue-800">${link.link_text}</a>
+                        `;
+                        internalLinksContainer.appendChild(linkCard);
+                    });
+
+                    // Populate external links
+                    const externalLinksContainer = document.getElementById('external-links');
+                    result.external_links_suggestions.forEach(link => {
+                        const linkCard = document.createElement('div');
+                        linkCard.classList.add('p-4', 'bg-gray-50', 'rounded', 'shadow');
+                        linkCard.innerHTML = `
+                            <a href="${link.url}" class="text-blue-600 hover:text-blue-800">${link.link_text}</a>
+                        `;
+                        externalLinksContainer.appendChild(linkCard);
+                    });
+
+                    document.getElementById('rewritten-content').classList.remove('hidden');
+                } else {
+                    document.getElementById('rewritten-text').innerText = "No candidates returned.";
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            } finally {
+                // Enable the button and hide loading indicator
+                rewriteButton.disabled = false;
+                loadingIndicator.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
+
+
+
+

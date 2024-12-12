@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Your SEO Score - AI SEO Tools</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* CSS cho spinner */
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        main {
+            flex: 1;
+        }
+        footer {
+            margin-top: auto;
+        }
+        /* Overall score container */
+.overall-score-container {
+    text-align: center;
+    margin: 20px auto;
+    width: 100%;
+    max-width: 300px;  /* Optional: Adjust the max width */
+}
+
+        .score-circle {
+            width: 150px;        /* Diameter of the circle */
+            height: 150px;
+            border-radius: 50%;  /* Make it circular */
+            background-color: #4CAF50;  /* Circle color */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 20px; /* Space between circle and feedback */
+        }
+
+        .overall-score-text {
+            font-size: 18px;  /* Adjust font size */
+            color: white;     /* Text color inside the circle */
+            font-weight: bold;
+        }
+
+        .overall-feedback {
+            font-size: 14px;   /* Feedback text size */
+            color: #333;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+        .spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+            display: none;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Header -->
+    <header class="bg-[#9ab8d7] shadow-md py-4">
+        <nav class="container mx-auto px-6 flex justify-between items-center">
+            <div><img src="./image/Logo.png" alt="Hình ảnh logo nhóm" width="128" height="96"></div>
+            <div class="space-x-6">
+                <button class="bg-gray-100 text-gray-1000 hover:bg-[#f59f2d] transition-colors duration-300 rounded-lg py-4 px-8" onclick="window.location.href='/'">Home</button>
+                <button class="bg-[#f59f2d] text-gray-1000 hover:bg-[#f59f2d] transition-colors duration-300 rounded-lg py-4 px-8" onclick="window.location.href='seo-score.html'">Check Your SEO Score</button>
+                <button class="bg-gray-100 text-gray-1000 hover:bg-[#f59f2d] transition-colors duration-300 rounded-lg py-4 px-8" onclick="window.location.href='rewrite-seo.html'">Rewrite Your Content</button>
+                <button class="bg-gray-100 text-gray-1000 hover:bg-[#f59f2d] transition-colors duration-300 rounded-lg py-4 px-8" onclick="window.location.href='about.html'">About Us</button>
+            </div>
+        </nav>
+    </header>
+    <!-- Main Content -->
+<!-- Main Content -->
+<main class="container mx-auto px-6 py-8">
+    <h1 class="text-3xl font-bold mb-6">SEO Optimization Feedback</h1>
+    <form id="score-form" class="bg-gray-100 rounded-lg shadow-md p-8">
+        <textarea id="content-input" rows="10" class="w-full border border-gray-300 rounded-lg p-4" placeholder="Paste your content here..."></textarea>
+        <button id="score-button" type="submit" class="mt-4 bg-[#ffde59] py-2 px-4 rounded-lg hover:bg-[#f59f2d] transition duration-300">Score Your Content</button>
+        <div id="loading" class="mt-2 text-blue-600 hidden">
+            <div class="spinner"></div>
+            <span>Loading...</span>
+        </div>
+    </form>
+    <div id="rewritten-content" class="mt-6 hidden">
+        <div id="overall-score-container" class="overall-score-container">
+            <div id="score-circle" class="score-circle">
+                <span id="overall-score-text" class="overall-score-text"></span>
+            </div>
+            <div id="overall-feedback" class="overall-feedback">
+                <!-- Feedback information will be here -->
+            </div>
+        </div>
+        <h2 class="text-2xl font-semibold">Details:</h2>
+
+        <!-- Title Optimization -->
+        <div class="p-4 bg-gray-50 rounded shadow mb-4">
+            <h3 class="text-xl font-semibold">Title Optimization</h3>
+            <p id="title-optimization-feedback" class="text-gray-700"></p>
+            <p id="title-optimization-score" class="text-gray-700"></p>
+        </div>
+
+        <!-- Meta Description -->
+        <div class="p-4 bg-gray-50 rounded shadow mb-4">
+            <h3 class="text-xl font-semibold">Meta Description</h3>
+            <p id="meta-description-feedback" class="text-gray-700"></p>
+            <p id="meta-description-score" class="text-gray-700"></p>
+        </div>
+
+        <!-- Keyword Usage -->
+        <div class="p-4 bg-gray-50 rounded shadow mb-4">
+            <h3 class="text-xl font-semibold">Keyword Usage</h3>
+            <p id="keyword-usage-feedback" class="text-gray-700"></p>
+            <p id="keyword-usage-score" class="text-gray-700"></p>
+        </div>
+
+        <!-- Internal Links -->
+        <div class="p-4 bg-gray-50 rounded shadow mb-4">
+            <h3 class="text-xl font-semibold">Internal Linking</h3>
+            <p id="internal-linking-feedback" class="text-gray-700"></p>
+            <p id="internal-linking-score" class="text-gray-700"></p>
+        </div>
+
+        <!-- External Links -->
+        <div class="p-4 bg-gray-50 rounded shadow mb-4">
+            <h3 class="text-xl font-semibold">External Linking</h3>
+            <p id="external-linking-feedback" class="text-gray-700"></p>
+            <p id="external-linking-score" class="text-gray-700"></p>
+        </div>
+
+        <!-- Content Structure -->
+        <div class="p-4 bg-gray-50 rounded shadow mb-4">
+            <h3 class="text-xl font-semibold">Content Structure</h3>
+            <p id="content-structure-feedback" class="text-gray-700"></p>
+            <p id="content-structure-score" class="text-gray-700"></p>
+        </div>
+
+        <!-- Content Quality and Length -->
+        <div class="p-4 bg-gray-50 rounded shadow mb-4">
+            <h3 class="text-xl font-semibold">Content Quality and Length</h3>
+            <p id="content-quality-feedback" class="text-gray-700"></p>
+            <p id="content-quality-score" class="text-gray-700"></p>
+        </div>
+
+        <!-- Overall Score -->
+        <div class="p-4 bg-gray-50 rounded shadow mb-4">
+            <h3 class="text-xl font-semibold">Overall Score</h3>
+            <p id="overall-feedback" class="text-gray-700"></p>
+            <p id="overall-score" class="text-gray-700"></p>
+        </div>
+    </div>
+</main>
+
+    <!-- Footer -->
+    <footer class="bg-[#384959] text-white py-2"> 
+        <div class="container mx-auto text-center">
+            <p>&copy; 2024 AI SEO Tools. All rights reserved.</p>
+            <div class="mt-4">
+                <a href="mailto:contact@aiseotools.com" class="text-white hover:text-yellow-500">Contact Us</a> | 
+                <a href="about.html" class="text-white hover:text-yellow-500">About Us</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+            const prompt = `
+            [Role] SEO Content Optimizer
+            [Task] Evaluate
+            SEO content quality based on the following criteria.
+
+            [Context] Evaluation
+            Analyze the provided content for SEO performance and return a score for each category, along with an overall score out of 100.
+
+            [Evaluation Criteria]
+            Evaluate the following aspects of the content:
+
+            Keyword Usage (20 points)
+
+            How well does the content utilize the main keyword and related keywords?
+            Are keywords placed in strategic areas (title, meta description, headings)?
+            Title Optimization (15 points)
+
+            Is the title engaging, relevant, and SEO-friendly?
+            Does it contain the main keyword and stay within the recommended length (50-60 characters)?
+            Meta Description (15 points)
+
+            Is the meta description compelling and clear?
+            Does it contain the main keyword and fit within the character limit (150-160 characters)?
+            Internal Linking (15 points)
+
+            Does the content include internal links to related pages on the website?
+            Are there at least two internal links?
+            External Linking (15 points)
+
+            Are external links to high-authority sources included?
+            Are they relevant and credible?
+            Content Structure (15 points)
+
+            Is the content well-structured with short paragraphs, subheadings (H2, H3), and bullet points?
+            Does it improve readability and engagement?
+
+            Content Length and Quality (15 points)
+
+            Is the content informative, providing real value to the reader?
+            Does the length meet the ideal range (1,000-2,000 words) for SEO?
+            [Constraints]
+
+            Focus on practical and actionable recommendations for SEO optimization.
+            Be specific in your feedback and scoring.
+            [Output Requirements]
+
+            Return a JSON response with the score for each category, along with an overall SEO score out of 100.
+            SAMPLE OUTPUT WITH OUT MARKDOWN OR CODEBLOCK:
+            {
+            "title_optimization": {
+                "score": 9,
+                "feedback": "The title is engaging, includes the main keyword, and is within the optimal length range."
+            },
+            "meta_description": {
+                "score": 8,
+                "feedback": "Meta description is clear and includes the main keyword, but could be slightly more compelling."
+            },
+            "keyword_usage": {
+                "score": 18,
+                "feedback": "The main keyword is used effectively, though there is room for more related keywords."
+            },
+            "internal_linking": {
+                "score": 14,
+                "feedback": "Two internal links are present, but more links to deeper content could further improve SEO."
+            },
+            "external_linking": {
+                "score": 13,
+                "feedback": "External links to credible sources are present but could be expanded to improve content authority."
+            },
+            "content_structure": {
+                "score": 15,
+                "feedback": "The content is well-structured with appropriate use of subheadings, short paragraphs, and bullet points."
+            },
+            "content_quality_and_length": {
+                "score": 15,
+                "feedback": "The content is high-quality, informative, and within the optimal length range."
+            },
+            "overall_score": {
+                "score": 92,
+                "feedback": "The content is SEO-optimized with some areas for improvement, particularly in internal linking and page speed."
+            }
+        }
+        OUTPUT WITH OUT MARKDOWN OR CODEBLOCK
+        `;
+
+
+        document.getElementById('score-form').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const content = document.getElementById('content-input').value;
+            const rewriteButton = document.getElementById('score-button');
+            const loadingIndicator = document.getElementById('loading');
+
+            // Disable the button and show loading indicator
+            rewriteButton.disabled = true;
+            loadingIndicator.classList.remove('hidden');
+
+            const apiKey =  'AIzaSyCxfNZmwz4ENyo9rQK9Xc1_bAp8L32531o'; // Thay thế bng cách lấy từ biến môi trường nếu cần
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-002:generateContent?key=${apiKey}`;
+            
+            const requestBody = {
+                contents: [
+                    {
+                        role: "user",
+                        parts: [
+                            {
+                                text: prompt + "This is content to score:" + content
+                            }
+                        ]
+                    }
+                ],
+                generationConfig: {
+                    temperature: 0,
+                    topK: 40,
+                    topP: 0.95,
+                    maxOutputTokens: 8192,
+                    responseMimeType: "application/json"
+                }
+            };
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(requestBody)
+                });
+
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+
+                const data = await response.json();
+
+                if (data.candidates && data.candidates.length > 0) {
+                    let geminiResponseText = data.candidates[0].content.parts[0]?.text || "No response text available.";
+                    geminiResponseText = geminiResponseText.replace(/^```json|```$/g, '').trim(); // Loại bỏ dấu ```json và ``` ở đầu và cuối
+                    try {
+                        const result = JSON.parse(geminiResponseText);
+
+                        // Update Overall Score
+                        const overallScoreTextElement = document.getElementById('overall-score-text');
+                        const feedbackElement = document.getElementById('overall-feedback');
+                        if (overallScoreTextElement && feedbackElement) {
+                            overallScoreTextElement.innerText = `Score: ${result.overall_score.score}/100`;
+                            feedbackElement.innerText = result.overall_score.feedback;
+                        }
+                        
+                        // Title Optimization
+                        const titleFeedbackElement = document.getElementById('title-optimization-feedback');
+                        const titleScoreElement = document.getElementById('title-optimization-score');
+                        if (titleFeedbackElement && titleScoreElement) {
+                            titleFeedbackElement.innerText = result.title_optimization.feedback;
+                            titleScoreElement.innerText = `Score: ${result.title_optimization.score}/15`;
+                        }
+
+                        // Meta Description
+                        const metaDescriptionFeedbackElement = document.getElementById('meta-description-feedback');
+                        const metaDescriptionScoreElement = document.getElementById('meta-description-score');
+                        if (metaDescriptionFeedbackElement && metaDescriptionScoreElement) {
+                            metaDescriptionFeedbackElement.innerText = result.meta_description.feedback;
+                            metaDescriptionScoreElement.innerText = `Score: ${result.meta_description.score}/15`;
+                        }
+
+                        // Keyword Usage
+                        const keywordUsageFeedbackElement = document.getElementById('keyword-usage-feedback');
+                        const keywordUsageScoreElement = document.getElementById('keyword-usage-score');
+                        if (keywordUsageFeedbackElement && keywordUsageScoreElement) {
+                            keywordUsageFeedbackElement.innerText = result.keyword_usage.feedback;
+                            keywordUsageScoreElement.innerText = `Score: ${result.keyword_usage.score}/20`;
+                        }
+
+                        // Internal Linking
+                        const internalLinkingFeedbackElement = document.getElementById('internal-linking-feedback');
+                        const internalLinkingScoreElement = document.getElementById('internal-linking-score');
+                        if (internalLinkingFeedbackElement && internalLinkingScoreElement) {
+                            internalLinkingFeedbackElement.innerText = result.internal_linking.feedback;
+                            internalLinkingScoreElement.innerText = `Score: ${result.internal_linking.score}/15`;
+                        }
+
+                        // External Linking
+                        const externalLinkingFeedbackElement = document.getElementById('external-linking-feedback');
+                        const externalLinkingScoreElement = document.getElementById('external-linking-score');
+                        if (externalLinkingFeedbackElement && externalLinkingScoreElement) {
+                            externalLinkingFeedbackElement.innerText = result.external_linking.feedback;
+                            externalLinkingScoreElement.innerText = `Score: ${result.external_linking.score}/15`;
+                        }
+
+                        // Content Structure
+                        const contentStructureFeedbackElement = document.getElementById('content-structure-feedback');
+                        const contentStructureScoreElement = document.getElementById('content-structure-score');
+                        if (contentStructureFeedbackElement && contentStructureScoreElement) {
+                            contentStructureFeedbackElement.innerText = result.content_structure.feedback;
+                            contentStructureScoreElement.innerText = `Score: ${result.content_structure.score}/15`;
+                        }
+
+                        // Content Quality and Length
+                        const contentQualityFeedbackElement = document.getElementById('content-quality-feedback');
+                        const contentQualityScoreElement = document.getElementById('content-quality-score');
+                        if (contentQualityFeedbackElement && contentQualityScoreElement) {
+                            contentQualityFeedbackElement.innerText = result.content_quality_and_length.feedback;
+                            contentQualityScoreElement.innerText = `Score: ${result.content_quality_and_length.score}/15`;
+                        }
+
+                        // Overall Score
+                        const detailsScoreElement = document.getElementById('overall-score');
+                        if (detailsScoreElement) {
+                            detailsScoreElement.innerText = `Score: ${result.overall_score.score}/100`;
+                        }
+                        // Show the feedback content
+                        document.getElementById('rewritten-content').classList.remove('hidden');
+                    } catch (jsonError) {
+                    console.error('JSON Parsing Error:', jsonError);
+                    document.getElementById('rewritten-text').innerText = "Failed to parse content. Please try again later.";
+                }
+            } else {
+                document.getElementById('rewritten-text').innerText = "No candidates returned.";
+            }
+
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('rewritten-text').innerText = "An error occurred while processing your request.";
+            } finally {
+                // Enable the button and hide loading indicator
+                rewriteButton.disabled = false;
+                loadingIndicator.classList.add('hidden');
+            }
+
+        });
+</script>
+</body>
+</html>
+

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bố Cục Hình Ảnh Hình Thang Cân</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Added styles for flexbox layout */
+        html, body {
+            height: 100%;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+        main {
+            flex: 1; /* Allow main to grow and fill the space */
+        }
+    </style>
+</head>
+
+<body class="bg-white">
+    
+    <!-- Header -->
+    <header class="bg-[#9ab8d7] shadow-md py-4">
+        <nav class="container mx-auto px-6 flex justify-between items-center">
+            <div><img src="./image/Logo.png" alt="Hình ảnh logo nhóm" width="128" height="96"></div>
+            <div class="space-x-6">
+                <button class="bg-gray-100 text-gray-700 hover:bg-[#f59f2d] transition-colors duration-300 rounded-lg py-4 px-8" onclick="window.location.href='/'">Home</button>
+                <button class="bg-gray-100 text-gray-700 hover:bg-[#f59f2d] transition-colors duration-300 rounded-lg py-4 px-8" onclick="window.location.href='seo-score.html'">Check Your SEO Score</button>
+                <button class="bg-gray-100 text-gray-700 hover:bg-[#f59f2d] transition-colors duration-300 rounded-lg py-4 px-8" onclick="window.location.href='rewrite-seo.html'">Rewrite Your Content</button>
+                <button class="bg-[#f59f2d] text-gray-700 hover:bg-[#f59f2d] transition-colors duration-300 rounded-lg py-4 px-8" onclick="window.location.href='about.html'">About Us</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-8 fade-in">
+        <div class="relative w-full h-[600px]">
+            <!-- Hàng trên: 3 hình -->
+            <div class="flex justify-center space-x-4 absolute top-0 left-1/2 transform -translate-x-1/2 w-full">
+                <div class="text-center">
+                    <img src="./image/Nhu Thai.jpg" alt="Hình 1" class="w-full h-48 object-cover rounded-lg shadow-md">
+                    <p class="mt-2 font-semibold">Nhu Thai</p>
+                    <p class="text-gray-600">Leader</p>
+                </div>
+                <div class="text-center">
+                    <img src="./image/Thu Ky.jpg" alt="Hình 2" class="w-full h-48 object-cover rounded-lg shadow-md">
+                    <p class="mt-2 font-semibold">Thu Ky</p>
+                    <p class="text-gray-600">Member</p>
+                </div>
+                <div class="text-center">
+                    <img src="./image/Lan Phuong.jpg" alt="Hình 3" class="w-full h-48 object-cover rounded-lg shadow-md">
+                    <p class="mt-2 font-semibold">Lan Phuong</p>
+                    <p class="text-gray-600">Member</p>
+                </div>
+            </div>
+    
+            <!-- Hàng dưới: 2 hình -->
+            <div class="flex justify-center space-x-4 absolute bottom-0 left-1/2 transform -translate-x-1/2 w-full">
+                <div class="text-center">
+                    <img src="./image/Thu Phong.jpg" alt="Hình 4" class="w-full h-48 object-cover rounded-lg shadow-md">
+                    <p class="mt-2 font-semibold">Thu Phong</p>
+                    <p class="text-gray-600">Member</p>
+                </div>
+                <div class="text-center">
+                    <img src="./image/Vu Ky.jpg" alt="Hình 5" class="w-full h-48 object-cover rounded-lg shadow-md">
+                    <p class="mt-2 font-semibold">Vu Ky</p>
+                    <p class="text-gray-600">Member</p>
+                </div>
+            </div>
+        </div>
+        <!-- About Us Content -->
+        <div class="mt-20 max-w-4xl mx-auto prose prose-lg">
+            <h2 class="text-3xl font-bold mb-6">About Us</h2>
+            <p class="mb-6">
+                Welcome to <span class="font-semibold">KSEO</span>, a collaborative initiative by five passionate students with a shared vision.
+            </p>
+            <p class="mb-8">
+                We came together to combine our unique skills and creativity to bring this project to life. What started as an idea among friends has grown into a meaningful endeavor, driven by our curiosity and dedication to unlocking creativity and helping others find their path to perfect SEO solutions.
+            </p>
+
+            <h3 class="text-2xl font-bold mb-4">Our Mission</h3>
+            <p class="mb-8">
+                At KSEO, we aim to simplify and enhance the SEO journey for individuals and businesses alike, ensuring they can maximize their online presence effortlessly.
+            </p>
+
+            <h3 class="text-2xl font-bold mb-4">What We Do</h3>
+            <p class="mb-6">
+                Together, we design and deliver resources and solutions to make SEO accessible, effective, and user-friendly for everyone. From educational content to intuitive tools, we strive to help people unlock their potential and thrive in the digital world.
+            </p>
+            <p class="mb-8 italic">
+                Thank you for joining us on this journey. We're thrilled to share our progress, insights, and achievements with you as KSEO continues to grow!
+            </p>
+        </div>
+
+        <!-- Modal -->
+        <div id="imageModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+            <div class="bg-white p-8 rounded-lg max-w-2xl w-full mx-4">
+                <div class="flex justify-between items-start mb-4">
+                    <h2 id="modalName" class="text-2xl font-bold"></h2>
+                    <button onclick="closeModal()" class="text-gray-500 hover:text-gray-700">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="flex gap-6">
+                    <img id="modalImage" class="w-48 h-48 object-cover rounded-lg" src="" alt="">
+                    <div>
+                        <p id="modalRole" class="text-gray-600 mb-4"></p>
+                        <p id="modalDescription" class="text-gray-700"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#384959] text-white py-2">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2024 AI SEO Tools. All rights reserved.</p>
+            <div class="mt-4">
+                <a href="ngoctamnhuthaist@gmail.com" class="text-white hover:text-yellow-500">Contact Us</a> | 
+                <a href="about.html" class="text-white hover:text-yellow-500">About Us</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const teamMembers = {
+            'Nhu Thai': {
+                role: 'Developer',
+                image: "./image/Nhu Thai.jpg",
+                description: 'Hello! My name is Nhu Thai, and I am the leader of the team and I am also a developer. I work on building the website and sharing ideas with the team to make it all come together!'
+            },
+            'Thu Ky': {
+                role: 'Designer',
+                image: "./image/Thu Ky.jpg",
+                description: 'Hi guys, I am Thu Ky-one of the designer of team. I designed something to make users have a good look about our web and great experience. Hope you all like it'
+            },
+            'Lan Phuong': {
+                role: 'Designer',
+                image: './image/Lan Phuong.jpg',
+                description: 'Hi guys, my name is Lan Phuong and I am the designer in the team. I focus on creating beautiful interfaces and ensuring comfort for users when using the website.'
+            },
+            'Thu Phong': {
+                role: 'Designer and content writer',
+                image: './image/Thu Phong.jpg',
+                description: "Hello! My name is Thu Phong, and I am a designer. I focus on creating engaging visuals and ensures the platform's aesthetic aligns with the project's goal"
+            },
+            'Vu Ky': {
+                role: 'Designer',
+                image: './image/Vu Ky.jpg',
+                description: 'Hello! My name is Vu Ky, and I am a designer on the team. I focus on creating beautiful and user-friendly designs to make the website look its best!'
+            }
+        };
+
+        // Add event listeners after the DOM is fully loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            // Select all images with alt text starting with "Hình"
+            const teamImages = document.querySelectorAll('img[alt^="Hình"]');
+            
+            teamImages.forEach(img => {
+                // Find the name in the sibling paragraph
+                const nameElement = img.closest('div').querySelector('p.font-semibold');
+                if (nameElement) {
+                    const name = nameElement.textContent;
+                    img.style.cursor = 'pointer';
+                    img.addEventListener('click', () => openModal(name));
+                }
+            });
+        });
+
+        function openModal(name) {
+            const member = teamMembers[name];
+            if (!member) return; // Exit if member not found
+
+            document.getElementById('modalName').textContent = name;
+            document.getElementById('modalRole').textContent = member.role;
+            document.getElementById('modalImage').src = member.image;
+            document.getElementById('modalDescription').textContent = member.description;
+            
+            const modal = document.getElementById('imageModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.classList.remove('flex');
+            modal.classList.add('hidden');
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('imageModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html> 
