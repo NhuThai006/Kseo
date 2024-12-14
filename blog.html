@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Posts Grid</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @media screen and (max-width: 768px) {
+            .grid-cols-3 {
+                grid-template-columns: repeat(1, minmax(0, 1fr));
+            }
+        }
+        
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+        
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Viewport height */
+        }
+        
+        main {
+            flex: 1; /* Takes up remaining space */
+        }
+        
+        footer {
+            margin-top: auto; /* Pushes footer to bottom */
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <!-- Header -->
+    <header class="bg-[#9ab8d7] shadow-md py-2 sticky top-0 z-50">
+        <nav class="container mx-auto px-6 flex justify-between items-center">
+            <div>
+                <img src="./image/Logo.png" alt="Hình ảnh logo nhóm" width="128" height="96">
+            </div>
+            <div class="space-x-6">
+                <button class="bg-gray-100 text-gray-1000 hover:bg-[#f59f2d] transition-colors duration-300 rounded-lg py-4 px-8" onclick="window.location.href='/'">Home</button>
+                <button class="bg-gray-100 text-gray-1000 hover:bg-[#f59f2d] transition-colors duration-300 rounded-lg py-4 px-8" onclick="window.location.href='seo-score.html'">Check Your SEO Score</button>
+                <button class="bg-gray-100 text-gray-1000 hover:bg-[#f59f2d] transition-colors duration-300 rounded-lg py-4 px-8" onclick="window.location.href='rewrite-seo.html'">Rewrite Your Content</button>
+                <button class="bg-gray-100 text-gray-1000 hover:bg-[#f59f2d] transition-colors duration-300 rounded-lg py-4 px-8" onclick="window.location.href='about.html'">About Us</button>
+                <button class="bg-blue-500 text-white hover:bg-blue-600 transition-colors duration-300 rounded-full w-16 h-16" onclick="window.location.href='blog.html'">Blog</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Blog Card 1 -->
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                <a href="blog1.html" class="block">
+                    <img src="https://api.backlinko.com/app/uploads/2021/05/how-are-bloggers-driving-traffic-to-their-posts-960x630.webp" 
+                         alt="What is SEO Content" 
+                         class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">What is SEO Content?</h3>
+                        <p class="text-gray-600">Learn about SEO content and how it can improve your website's visibility.</p>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Blog Card 2 -->
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                <a href="blog2.html" class="block">
+                    <img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png" 
+                         alt="Search Engines" 
+                         class="w-full h-48 object-contain bg-gray-100">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Search Engines - How They Work</h3>
+                        <p class="text-gray-600">Understand the mechanics behind search engines.</p>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Blog Card 3 -->
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                <a href="blog3.html" class="block">
+                    <img src="https://uploads.nhanhoa.com/attach/1702607105_google-index-1.png" 
+                         alt="Google Indexing" 
+                         class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Google Indexing</h3>
+                        <p class="text-gray-600">Learn about how Google indexes websites.</p>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Blog Card 4 -->
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                <a href="blog4.html" class="block">
+                    <img src="https://moz.com/images/learn/1-External-Links.png?w=738&h=738&auto=compress%2Cformat&fit=crop&dm=1731598362&s=16c73dfa0a60b487b71063a0cca02d91" 
+                         alt="External Links" 
+                         class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">External Links</h3>
+                        <p class="text-gray-600">Understanding the importance of external linking.</p>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Blog Card 5 -->
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                <a href="blog5.html" class="block">
+                    <img src="https://moz.com/images/learn/internal-links/1-seo-best-practice.png?w=1280&h=720&auto=compress%2Cformat&fit=crop&dm=1731098438&s=251b9df7529119cef518dd4bec7d6439" 
+                         alt="Internal Links" 
+                         class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Internal Links</h3>
+                        <p class="text-gray-600">Best practices for internal linking strategy.</p>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Blog Card 6 -->
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                <a href="blog6.html" class="block">
+                    <img src="https://prodima.vn/wp-content/uploads/2021/06/readability-la-gi-3-buoc-cai-thien-chi-so-readability-chuan-seo-1.jpg" 
+                         alt="Readability" 
+                         class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Readability</h3>
+                        <p class="text-gray-600">Improve your content's readability for better SEO.</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#384959] text-white py-2 mt-auto">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2024 AI SEO Tools. All rights reserved.</p>
+            <div class="mt-4">
+                <a href="mailto:ngoctamnhuthaist@gmail.com" class="text-white hover:text-yellow-500">Contact Us</a> | 
+                <a href="about.html" class="text-white hover:text-yellow-500">About Us</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
