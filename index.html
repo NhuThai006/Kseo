@@ -28,6 +28,13 @@
         footer {
             margin-top: auto; /* Pushes footer to bottom when content is short */
         }
+        
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            width: 100%;
+        }
     </style>
 </head>
 <body class="bg-gray-100 !important">
@@ -128,22 +135,22 @@
                 <!-- Row 2 -->
                 <div class="flex items-center mb-12">
                     <div class="w-1/3">
-                        <img src="./image/famous/Andrew Davis.jpg" alt="Person 2" width="500" height="500" class="rounded-xl shadow-lg max-w-full h-auto">
+                        <img src="./image/famous/Andrew Davis.jpg" alt="Andrew Davis said about content" width="500" height="500" class="rounded-xl shadow-lg max-w-full h-auto">
                     </div>
                     <div class="w-2/3 pl-8">
                         <h3 class="text-2xl font-bold mb-4">"Content builds relationships. Relationships are built on trust. Trust drives revenue." - Andrew Davis</h3>
                         <p class="text-gray-600">
                             Andrew Davis, author and keynote speaker
                             <br>
-                            OK, so he sounds a little like Yoda here. But we’ve got to agree with Andrew Davis because, well, what he says reminds me of an early exchange we had – not quite a ‘founder’s story’ but stick with me.
+                            OK, so he sounds a little like Yoda here. But we've got to agree with Andrew Davis because, well, what he says reminds me of an early exchange we had – not quite a 'founder's story' but stick with me.
                             <br>
-                            While Collective Content is almost five years old, it took a few months for us to find our groove. In 2012, a CMO at a large technology vendor put his finger on what we do. He said: “You help us have better conversations with our customers.” And to this day we’re still doing that for his company.
+                            While Collective Content is almost five years old, it took a few months for us to find our groove. In 2012, a CMO at a large technology vendor put his finger on what we do. He said: "You help us have better conversations with our customers." And to this day we're still doing that for his company.
                             <br>
-                            Davis’ comment is in the same vein. He takes it further by saying it is through those ongoing, useful conversations that trust is built. It can take years but that is the basis for every great content marketing programme in B2B.
+                            Davis' comment is in the same vein. He takes it further by saying it is through those ongoing, useful conversations that trust is built. It can take years but that is the basis for every great content marketing programme in B2B.
                             <br>
-                            Trust is really hard to earn and then to maintain. But it’s golden once you have it.
+                            Trust is really hard to earn and then to maintain. But it's golden once you have it.
                             <br>
-                            Think about the people and brands you trust. Then imagine your customers feeling the same way about you. It’s worth the effort. It will mean more revenue. And content is increasingly one of the key ways to get to that point.   
+                            Think about the people and brands you trust. Then imagine your customers feeling the same way about you. It's worth the effort. It will mean more revenue. And content is increasingly one of the key ways to get to that point.   
                             <a href="https://collectivecontent.agency/2016/10/28/andrew-davis-content-relationships-trust-success/"  class="text-blue-500 hover:text-blue-700" target="_blank">
                                 source
                             </a> 
@@ -161,56 +168,54 @@
         </div>
 
         <section class="Question bg-gray-100 py-20" id="question-section">
-            <h2 class="text-3xl font-bold text-center mb-6">Frequently asked questions</h2>
+            <div class="container mx-auto px-4 max-w-8xl">
+                <h2 class="text-3xl font-bold text-center mb-6">Frequently asked questions</h2>
 
-            <div class="p-4 bg-gray-50 rounded shadow mb-4">
-                <h3 class="text-xl font-semibold cursor-pointer hover:text-blue-700" onclick="toggleParagraph('engine')">
-                    What is Search Engine?
-                    <span class="ml-2">▼</span>
-                </h3>
-                <p id="engine" class = "hidden mt-2 text-gray-600">
-                    A search engine is an online tool or software system that helps users find information on the internet by entering keywords or phrases. It uses algorithms to search a database of indexed websites and provide relevant results.
-                </p>
+                <div class="p-4 bg-gray-50 rounded shadow mb-4">
+                    <h3 class="text-xl font-semibold cursor-pointer hover:text-blue-700" onclick="toggleParagraph('engine')">
+                        What is Search Engine?
+                        <span class="ml-2">▼</span>
+                    </h3>
+                    <p id="engine" class="hidden mt-2 text-gray-600">
+                        A search engine is an online tool or software system that helps users find information on the internet by entering keywords or phrases. It uses algorithms to search a database of indexed websites and provide relevant results.
+                    </p>
+                </div>
+
+                <div class="p-4 bg-gray-50 rounded shadow mb-4">
+                    <h3 class="text-xl font-semibold cursor-pointer hover:text-blue-700" onclick="toggleParagraph('seo-content')">
+                        What is SEO content meaning?
+                        <span class="ml-2">▼</span>
+                    </h3>
+                    <p id="seo-content" class="hidden mt-2 text-gray-600">
+                        SEO stands for Search Engine Optimization and helps search engines understand your website's content and connect it with users by delivering relevant, valuable results based on their search queries.
+                        The goal of SEO is to rank on the first page of search engine results pages (SERPs) for the most relevant and valuable keywords to your target demographic, driving qualified traffic to your site.
+                        <br>
+                        <a href="https://www.youtube.com/watch?v=MYE6T_gd7H0"  class="text-blue-500 hover:text-blue-700" target="_blank">
+                            For more information, watch this video.
+                        </a>
+                    </p>
+                </div>
+
+                <div class="p-4 bg-gray-50 rounded shadow mb-4">
+                    <h3 class="text-xl font-semibold cursor-pointer hover:text-blue-700" onclick="toggleParagraph('who')">
+                        Who can use SEO-friendly content tools?
+                        <span class="ml-2">▼</span>
+                    </h3>
+                    <p id="who" class="hidden mt-2 text-gray-600">
+                        "Everyone, depending on its intended use."
+                    </p>
+                </div>
+
+                <div class="p-4 bg-gray-50 rounded shadow mb-4">
+                    <h3 class="text-xl font-semibold cursor-pointer hover:text-blue-700" onclick="toggleParagraph('How')">
+                        How do search engines work?
+                        <span class="ml-2">▼</span>
+                    </h3>
+                    <p id="How" class="hidden mt-2 text-gray-600">
+                        To learn how SEO works, it's important to have a basic understanding of how search engines work. Search engines use crawlers (also known as spiders or bots) to gather information across the internet to populate their extensive databases, called "indexes." Crawlers begin from a known webpage and then follow links from that page to other pages.
+                    </p>
+                </div>
             </div>
-
-            <div class="p-4 bg-gray-50 rounded shadow mb-4">
-                <h3 class="text-xl font-semibold cursor-pointer hover:text-blue-700" onclick="toggleParagraph('seo-content')">
-                    What is SEO content meaning?
-                    <span class="ml-2">▼</span>
-                </h3>
-                <p id="seo-content" class="hidden mt-2 text-gray-600">
-                    SEO stands for Search Engine Optimization and helps search engines understand your website’s content and connect it with users by delivering relevant, valuable results based on their search queries.
-                    The goal of SEO is to rank on the first page of search engine results pages (SERPs) for the most relevant and valuable keywords to your target demographic, driving qualified traffic to your site.
-                    <br>
-                    <a href="https://www.youtube.com/watch?v=MYE6T_gd7H0"  class="text-blue-500 hover:text-blue-700" target="_blank">
-                        For more information, watch this video.
-                    </a>
-                </p>
-                
-            </div>
-
-            <div class="p-4 bg-gray-50 rounded shadow mb-4">
-                <h3 class="text-xl font-semibold cursor-pointer hover:text-blue-700" onclick="toggleParagraph('who')">
-                    Who can use SEO-friendly content tools?
-                    <span class="ml-2">▼</span>
-                </h3>
-                <p id="who" class="hidden mt-2 text-gray-600">
-                    "Everyone, depending on its intended use."
-                </p>
-            </div>
-
-            <div class="p-4 bg-gray-50 rounded shadow mb-4">
-                <h3 class="text-xl font-semibold cursor-pointer hover:text-blue-700" onclick="toggleParagraph('How')">
-                    How do search engines work?
-                    <span class="ml-2">▼</span>
-                </h3>
-                <p id="How" class = "hidden mt-2 text-gray-600">
-                    To learn how SEO works, it’s important to have a basic understanding of how search engines work. Search engines use crawlers (also known as spiders or bots) to gather information across the internet to populate their extensive databases, called “indexes.” Crawlers begin from a known webpage and then follow links from that page to other pages.
-                </p>
-            </div>
-
-            
-
         </section>
         
     </main>
