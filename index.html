@@ -195,6 +195,16 @@
                         </a>
                     </p>
                 </div>
+                
+                <div class="p-4 bg-gray-50 rounded shadow mb-4"></div>
+                    <h3 class="text-xl font-semibold cursor-pointer hover:text-blue-700" onclick="toggleParagraph('How')">
+                        How do search engines work?
+                        <span class="ml-2">▼</span>
+                    </h3>
+                    <p id="How" class="hidden mt-2 text-gray-600">
+                        To learn how SEO works, it's important to have a basic understanding of how search engines work. Search engines use crawlers (also known as spiders or bots) to gather information across the internet to populate their extensive databases, called "indexes." Crawlers begin from a known webpage and then follow links from that page to other pages.
+                    </p>
+                </div>
 
                 <div class="p-4 bg-gray-50 rounded shadow mb-4">
                     <h3 class="text-xl font-semibold cursor-pointer hover:text-blue-700" onclick="toggleParagraph('who')">
@@ -206,15 +216,7 @@
                     </p>
                 </div>
 
-                <div class="p-4 bg-gray-50 rounded shadow mb-4">
-                    <h3 class="text-xl font-semibold cursor-pointer hover:text-blue-700" onclick="toggleParagraph('How')">
-                        How do search engines work?
-                        <span class="ml-2">▼</span>
-                    </h3>
-                    <p id="How" class="hidden mt-2 text-gray-600">
-                        To learn how SEO works, it's important to have a basic understanding of how search engines work. Search engines use crawlers (also known as spiders or bots) to gather information across the internet to populate their extensive databases, called "indexes." Crawlers begin from a known webpage and then follow links from that page to other pages.
-                    </p>
-                </div>
+                
             </div>
         </section>
         
@@ -238,6 +240,7 @@
     }
 
     function toggleParagraph(elementId) {
+
         const element = document.getElementById(elementId);
         element.classList.toggle('hidden');
     }
