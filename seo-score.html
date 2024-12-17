@@ -77,6 +77,19 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+        @media (max-width: 768px) {
+                                nav .space-x-6 {
+                                    display: flex;
+                                    flex-direction: column; /* Xếp các nút thành cột dọc */
+                                    align-items: center; /* Căn giữa các nút */
+                                    gap: 10px; /* Khoảng cách giữa các nút */
+                                }
+
+                                nav button {
+                                    width: 100%; /* Độ rộng các nút là 100% trên thiết bị nhỏ */
+                                    padding: 10px;
+                                }
+                                }
     </style>
 </head>
 <body class="bg-white">
